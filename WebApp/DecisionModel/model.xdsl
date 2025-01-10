@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- This network was created in GeNIe Academic, which can be used for academic teaching and research purposes only -->
+<smile version="1.0" id="Network1" numsamples="10000" discsamples="10000">
+	<nodes>
+		<decision id="cena">
+			<state id="Niska" />
+			<state id="Wysoka" />
+		</decision>
+		<cpt id="świeżość">
+			<state id="świeże" />
+			<state id="nieświeże" />
+			<probabilities>0.8 0.2</probabilities>
+		</cpt>
+		<decision id="mięso">
+			<state id="wołowina" />
+			<state id="wieprzowina" />
+			<state id="kurczak" />
+			<parents>cena</parents>
+		</decision>
+		<decision id="warzywa">
+			<state id="Z_warzywami" />
+			<state id="Bez_warzyw" />
+			<parents>cena mięso</parents>
+		</decision>
+		<decision id="sos">
+			<state id="Ostry" />
+			<state id="Łagodny" />
+			<parents>cena warzywa</parents>
+		</decision>
+		<cpt id="biegunka">
+			<state id="Jest" />
+			<state id="Niema" />
+			<parents>mięso warzywa sos świeżość</parents>
+			<probabilities>0.5 0.5 0.5 0.5 0.6 0.4 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5</probabilities>
+		</cpt>
+		<cpt id="obsługaklienta">
+			<state id="Miła" />
+			<state id="Niemiła" />
+			<probabilities>0.9 0.09999999999999998</probabilities>
+		</cpt>
+		<cpt id="wnętrze">
+			<state id="ładne" />
+			<state id="brzydkie" />
+			<probabilities>0.8 0.2</probabilities>
+		</cpt>
+		<cpt id="Uczucieciężkości">
+			<state id="Jest" />
+			<state id="Niema" />
+			<parents>mięso sos</parents>
+			<probabilities>0.5 0.5 0.6 0.4 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5</probabilities>
+		</cpt>
+		<cpt id="czasprzygotowania">
+			<state id="długi" />
+			<state id="krótki" />
+			<probabilities>0.5 0.5</probabilities>
+		</cpt>
+		<utility id="Wrażeniasmakowe">
+			<parents>mięso warzywa sos</parents>
+			<utilities>0.5 0.5 0 0.5 0.5 0 0.5 0.5 0 0.5 1 0</utilities>
+		</utility>
+		<decision id="lokal">
+			<state id="LovelyKebab" />
+			<state id="XXL" />
+			<state id="SuperKingKebab" />
+			<state id="RedChiliKebab" />
+			<state id="RoyalKebab" />
+			<state id="KebabKing" />
+			<state id="KrolKebabKreftowy" />
+			<state id="GrillKebab" />
+			<state id="GoodBoy" />
+			<state id="Kebabownia" />
+			<state id="RazmaKebab" />
+			<state id="Grek" />
+			<parents>cena sos</parents>
+		</decision>
+		<utility id="Dostępność">
+			<parents>lokal mięso</parents>
+			<utilities>1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0</utilities>
+		</utility>
+		<utility id="Inne_wrażenia">
+			<parents>wnętrze obsługaklienta Uczucieciężkości czasprzygotowania biegunka</parents>
+			<utilities>1 1 1 1 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</utilities>
+		</utility>
+		<utility id="Ocena">
+			<parents>lokal</parents>
+			<utilities>1 1 1 1 1 1 1 1 1 1 1 1</utilities>
+		</utility>
+		<maux id="opinia">
+			<parents>Dostępność Inne_wrażenia Ocena Wrażeniasmakowe</parents>
+			<expression>(1*Inne_wrażenia+1*Ocena+1*Wrażeniasmakowe)*Dostępność</expression>
+		</maux>
+	</nodes>
+	<extensions>
+		<genie version="1.0" app="GeNIe 4.1.4109.0 ACADEMIC" name="Network1">
+			<node id="mięso">
+				<name>Mięso</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>101 111 234 199</position>
+			</node>
+			<node id="warzywa">
+				<name>Warzywa</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>324 133 461 215</position>
+			</node>
+			<node id="sos">
+				<name>Sos</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>522 168 659 250</position>
+			</node>
+			<node id="biegunka">
+				<name>Biegunka</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>44 268 177 356</position>
+			</node>
+			<node id="czasprzygotowania">
+				<name>Czas przygotowania</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>48 599 181 687</position>
+			</node>
+			<node id="Uczucieciężkości">
+				<name>Uczucie ciężkości</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>431 356 564 444</position>
+			</node>
+			<node id="wnętrze">
+				<name>Wnętrze</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>17 387 150 475</position>
+			</node>
+			<node id="obsługaklienta">
+				<name>Obsługa klienta</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>35 497 168 585</position>
+			</node>
+			<node id="cena">
+				<name>Cena</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>619 34 752 122</position>
+			</node>
+			<node id="świeżość">
+				<name>Świeżość</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>349 3 482 91</position>
+			</node>
+			<node id="opinia">
+				<name>Opinia</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>513 504 610 561</position>
+			</node>
+			<node id="Wrażeniasmakowe">
+				<name>Wrażenia smakowe</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>240 327 373 415</position>
+			</node>
+			<node id="lokal">
+				<name>Lokal</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>789 180 940 269</position>
+			</node>
+			<node id="Inne_wrażenia">
+				<name>Inne wrażenia</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>239 501 356 554</position>
+			</node>
+			<node id="Dostępność">
+				<name>Dostępność</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>569 307 688 360</position>
+			</node>
+			<node id="Ocena">
+				<name>Ocena</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>805 364 965 444</position>
+			</node>
+		</genie>
+	</extensions>
+</smile>

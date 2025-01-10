@@ -1,0 +1,27 @@
+﻿using Smile;
+
+namespace WebApp {
+    public static class MyLicence {
+        public static void LoadLicence()
+        {
+            _ = new License(
+                "SMILE LICENSE ac0e9355 fda9e42e 684389b9 " +
+                "THIS IS AN ACADEMIC LICENSE AND CAN BE USED " +
+                "SOLELY FOR ACADEMIC RESEARCH AND TEACHING, " +
+                "AS DEFINED IN THE BAYESFUSION ACADEMIC " +
+                "SOFTWARE LICENSING AGREEMENT. " +
+                "Serial #: c059r6uckrgibd7vrwjqncd90 " +
+                "Issued for: Piotr Szuflicki (piotrszuflicki12@gmail.com) " +
+                "Academic institution: University of Technology in Bia\u0142ystok " +
+                "Valid until: 2025-04-04 " +
+                "Issued by BayesFusion activation server",
+                [
+                    0x76,0x5a,0x13,0x46,0x40,0xfa,0x52,0xd5,0xa4,0x3d,0xc5,0x97,0x17,0xce,0x48,0x9a,
+                    0x96,0xf3,0xda,0xe2,0xb0,0x2c,0x7a,0x17,0x77,0x63,0xd3,0xef,0xba,0xc7,0x6d,0x20,
+                    0xcc,0x70,0x31,0xb9,0x37,0xfa,0x3c,0x7f,0x6d,0xc7,0xb5,0x23,0x1d,0x55,0x1d,0x32,
+                    0x74,0xbd,0x32,0xc3,0xcc,0xa7,0xb7,0xed,0xb2,0xce,0x13,0xd7,0x6e,0x9a,0x8a,0x8d
+                ]
+            );
+        }
+    }
+}
