@@ -1,64 +1,83 @@
 ﻿@page "/"
 @using WebApp.Enums
 @using WebApp.Helpers
-
-<div class="row">
-    <div class="col-4">
-        <label class="label" for="priceType">Price</label>
-        <select class="form-select" id="priceType" @bind="_priceType">
-            <option selected value="0">@EnumHelper.GetDescription(PriceType.Unknown)</option>
-            <option value="1">@EnumHelper.GetDescription(PriceType.Cheap)</option>
-            <option value="2">@EnumHelper.GetDescription(PriceType.Expensive)</option>
-        </select>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-4">
-        <label class="label" for="meatType">Meat</label>
-        <select class="form-select" id="meatType" @bind="_meatType">
-            <option selected value="0">@EnumHelper.GetDescription(MeatType.Unknown)</option>
-            <option value="1">@EnumHelper.GetDescription(MeatType.Beef)</option>
-            <option value="2">@EnumHelper.GetDescription(MeatType.Pork)</option>
-            <option value="3">@EnumHelper.GetDescription(MeatType.Chicken)</option>
-        </select>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-4">
-        <label class="label" for="vegeType">Vegetables</label>
-        <select class="form-select" id="vegeType" @bind="_vegeType">
-            <option selected value="0">@EnumHelper.GetDescription(VegetableType.Unknown)</option>
-            <option value="1">@EnumHelper.GetDescription(VegetableType.Yes)</option>
-            <option value="2">@EnumHelper.GetDescription(VegetableType.No)</option>
-        </select>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-4">
-        <label class="label" for="sosType">Sos</label>
-        <select class="form-select" id="sosType" @bind="_sosType">
-            <option selected value="0">@EnumHelper.GetDescription(SosType.Unknown)</option>
-            <option value="1">@EnumHelper.GetDescription(SosType.NotSpicy)</option>
-            <option value="2">@EnumHelper.GetDescription(SosType.Spicy)</option>
-        </select>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-4">
-        <button class="btn btn-success" @onclick="Calculate">Search</button>
-    </div>
-</div>
-
-@if (_results is not null)
+@if (_results is null)
 {
-    foreach (var item in _results.OrderByDescending(x => x.Utility))
-    {
-        <div class="row">
-            @item.RestaurantName @item.Utility
+    <div class="row">
+        <div class="col-4">
+            <label class="label" for="priceType">Price</label>
+            <select class="form-select" id="priceType" @bind="_priceType">
+                <option selected value="0">@EnumHelper.GetDescription(PriceType.Unknown)</option>
+                <option value="1">@EnumHelper.GetDescription(PriceType.Cheap)</option>
+                <option value="2">@EnumHelper.GetDescription(PriceType.Expensive)</option>
+            </select>
         </div>
-    }
+    </div>
+
+    <div class="row">
+        <div class="col-4">
+            <label class="label" for="meatType">Meat</label>
+            <select class="form-select" id="meatType" @bind="_meatType">
+                <option selected value="0">@EnumHelper.GetDescription(MeatType.Unknown)</option>
+                <option value="1">@EnumHelper.GetDescription(MeatType.Beef)</option>
+                <option value="2">@EnumHelper.GetDescription(MeatType.Pork)</option>
+                <option value="3">@EnumHelper.GetDescription(MeatType.Chicken)</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-4">
+            <label class="label" for="vegeType">Vegetables</label>
+            <select class="form-select" id="vegeType" @bind="_vegeType">
+                <option selected value="0">@EnumHelper.GetDescription(VegetableType.Unknown)</option>
+                <option value="1">@EnumHelper.GetDescription(VegetableType.Yes)</option>
+                <option value="2">@EnumHelper.GetDescription(VegetableType.No)</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-4">
+            <label class="label" for="sosType">Sos</label>
+            <select class="form-select" id="sosType" @bind="_sosType">
+                <option selected value="0">@EnumHelper.GetDescription(SosType.Unknown)</option>
+                <option value="1">@EnumHelper.GetDescription(SosType.NotSpicy)</option>
+                <option value="2">@EnumHelper.GetDescription(SosType.Spicy)</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-4">
+            <button class="btn btn-success" @onclick="Calculate">Search</button>
+        </div>
+    </div>
+}
+else
+{
+    <div class="row mb-4">
+        <div class="col-12">
+            <button class="btn btn-primary d-inline" @onclick="NewSearch">New search</button>
+            <button class="btn btn-secondary d-inline" @onclick="EditSearch">Edit parameters</button>
+        </div>
+    </div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Lokal</th>
+            <th>Ocena</th>
+        </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in _results.OrderByDescending(x => x.Utility))
+            {
+                <tr>
+                    <td>@item.RestaurantName</td>
+                    <td>@item.Utility</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
 }

@@ -18,12 +18,26 @@ namespace WebApp.Components.Pages
             {
                 wrapper.LoadModel();
                 wrapper.SetSosType((SosType)(int.TryParse(_sosType, out var sosType) ? sosType : 0));
-                wrapper.SetMeatType((MeatType)(int.TryParse(_sosType, out var meatType) ? meatType : 0));
-                wrapper.SetPriceType((PriceType)(int.TryParse(_sosType, out var priceType) ? priceType : 0));
-                wrapper.SetVegetableType((VegetableType)(int.TryParse(_sosType, out var vegeType) ? vegeType : 0));
+                wrapper.SetMeatType((MeatType)(int.TryParse(_meatType, out var meatType) ? meatType : 0));
+                wrapper.SetPriceType((PriceType)(int.TryParse(_priceType, out var priceType) ? priceType : 0));
+                wrapper.SetVegetableType((VegetableType)(int.TryParse(_vegeType, out var vegeType) ? vegeType : 0));
                 
                 _results = wrapper.GetResults();
             }
+        }
+
+        private void EditSearch()
+        {
+            _results = null;
+        }
+
+        private void NewSearch()
+        {
+            _meatType = "0";
+            _vegeType = "0";
+            _sosType = "0";
+            _priceType = "0";
+            _results = null;
         }
     }
 }

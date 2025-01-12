@@ -93,33 +93,22 @@ namespace WebApp.Wrappers
             _network.UpdateBeliefs();
 
             var mtx = _network.GetNodeValue(ResultNodeId);
-            var parents = _network.GetValueIndexingParents(RestaurantNodeId);
+            var outcomes = _network.GetOutcomeIds(RestaurantNodeId);
 
             var results = new List<ModelResult>();
 
-            int dimCount = 1 + parents.Length;
-            
-            int[] dimSizes = new int[dimCount];
-            for (int i = 0; i < dimCount - 1; i++)
+            int dimensions = mtx.Length / outcomes.Length;
+            double[] values = new double[dimensions];
+            for (int i = 0; i < outcomes.Length; i++)
             {
-                dimSizes[i] = _network.GetOutcomeCount(parents[i]);
-            }
-            dimSizes[dimSizes.Length - 1] = 1;
-            int[] coords = new int[dimCount];
-            List<(string, string, double)> temp = [];
-            for (int elemIdx = 0; elemIdx < mtx.Length; elemIdx++)
-            {
-                IndexToCoords(elemIdx, dimSizes, coords);
-                if (dimCount > 1)
+                var parent = outcomes[i];
+                
+                for (int j = 0; j < dimensions; j++)
                 {
-                    for (int pIdx = 0; pIdx < parents.Length; pIdx++)
-                    {
-                        int parentHandle = parents[pIdx];
-                        temp.Add((
-                            _network.GetNodeId(parentHandle),
-                            _network.GetOutcomeId(parentHandle, coords[pIdx]), mtx[elemIdx]));
-                    }
+                    values[j] = mtx[i + j * outcomes.Length];
                 }
+                
+                results.Add(new ModelResult(parent, values.Max()));
             }
 
             return results;
