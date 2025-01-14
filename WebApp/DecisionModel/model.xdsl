@@ -56,7 +56,7 @@
 		</cpt>
 		<utility id="Wrażeniasmakowe">
 			<parents>mięso warzywa sos</parents>
-			<utilities>0.5 0.5 0 0.5 0.5 0 0.5 0.5 0 0.5 1 0</utilities>
+			<utilities>0.9 1 1 0.7 0.5 0.5 0.4 0.2 0.8 0.75 0.7 0.6</utilities>
 		</utility>
 		<decision id="lokal">
 			<state id="LovelyKebab" />
@@ -174,7 +174,7 @@
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>240 327 373 415</position>
+				<position>267 320 400 408</position>
 			</node>
 			<node id="lokal">
 				<name>Lokal</name>
